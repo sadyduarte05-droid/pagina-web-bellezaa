@@ -1,0 +1,1992 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SD Elegance - Belleza y Cuidado Personal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+      background-color: #f5f5dc;
+      background-image: url('https://images.unsplash.com/photo-1522335789203-aabd1fc54bc9?q=80&w=1470&auto=format&fit=crop');
+      background-size: cover;
+      background-attachment: fixed;
+      color: #111;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .navbar {
+      background-color: rgba(230, 220, 197, 0.95);
+      color: #333;
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+    }
+    .logo {
+      font-size: 1.8em;
+      font-weight: bold;
+      color: #5a4636;
+      margin-bottom: 1em;
+    }
+    .logo .sd {
+      font-family: 'Georgia', serif;
+      font-weight: 900;
+      color: #b37a56;
+      font-size: 2.4em;
+      margin-right: 0.1em;
+      letter-spacing: 0.05em;
+      text-shadow: 1px 1px 2px #8c6b4d;
+    }
+    .logo img {
+      width: 120px;
+      height: auto;
+      border-radius: 50%;
+    }
+    /* Menú rediseñado */
+    .menu-principal {
+      width: 100%;
+      padding: 0;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+    .menu-lista {
+      list-style: none;
+      display: flex;
+      justify-content: center;
+      margin: 0;
+      padding: 0;
+      position: relative;
+      flex-wrap: wrap;
+    }
+    .menu-item {
+      position: relative;
+      margin: 0 8px;
+    }
+    .menu-item > a {
+      display: block;
+      padding: 12px 18px;
+      color: #5a4636;
+      text-decoration: none;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-radius: 5px;
+    }
+    .menu-item > a:hover {
+      color: #b37a56;
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+    .submenu {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: white;
+      min-width: 200px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      border-radius: 0 0 5px 5px;
+      z-index: 1000;
+      padding: 10px 0;
+      list-style: none;
+      animation: fadeIn 0.3s ease;
+    }
+    .dropdown:hover .submenu {
+      display: block;
+    }
+    .submenu li a {
+      padding: 10px 20px;
+      color: #5a4636;
+      text-decoration: none;
+      display: block;
+      transition: background-color 0.2s;
+    }
+    .submenu li a:hover {
+      background-color: #f5f5dc;
+      color: #b37a56;
+    }
+    .menu-item > a i {
+      margin-left: 5px;
+      font-size: 0.7em;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Fin del menú rediseñado */
+    .search-form {
+      display: flex;
+      justify-content: center;
+      margin: 1em auto;
+      width: 100%;
+      max-width: 500px;
+    }
+    .search-input {
+      width: 70%;
+      padding: 0.5em;
+      border: 1px solid #c8b197;
+      border-radius: 5px 0 0 5px;
+      background-color: #fdfaf3;
+      color: #111;
+      font-size: 1em;
+    }
+    .search-button {
+      padding: 0.5em 1em;
+      background-color: #5a4636;
+      color: white;
+      border: none;
+      border-radius: 0 5px 5px 0;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+    .search-button:hover {
+      background-color: #443426;
+    }
+    .section {
+      width: 100%;
+      max-width: 800px;
+      margin: 1em auto;
+      display: none;
+      padding: 2em;
+      background-color: rgba(253, 250, 243, 0.95);
+      border-radius: 10px;
+      border: 1px solid #ddd1bb;
+      animation: fadeSlide 0.7s ease;
+    }
+    .section.visible {
+      display: block;
+    }
+    .titulo-grande {
+      font-size: 3em;
+      font-weight: bold;
+      color: #5a4636;
+    }
+    h2 {
+      color: #8c6b4d;
+      border-bottom: 2px solid #c8b197;
+      padding-bottom: 0.5em;
+      margin-top: 0;
+    }
+    p, li, a {
+      color: #222;
+      font-size: 1.1em;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+    table, th, td {
+      border: 1px solid #c8b197;
+    }
+    th, td {
+      padding: 0.5em;
+      text-align: left;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 0.5em;
+      margin-top: 0.5em;
+      margin-bottom: 1em;
+      border: 1px solid #c8b197;
+      border-radius: 5px;
+      background-color: #fdfaf3;
+      color: #111;
+      font-size: 1em;
+      resize: vertical;
+    }
+    form button {
+      background-color: #5a4636;
+      color: white;
+      padding: 0.7em 1.5em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1em;
+      transition: background-color 0.3s ease;
+    }
+    form button:hover {
+      background-color: #443426;
+    }
+    .footer {
+      text-align: center;
+      padding: 1em;
+      background-color: rgba(230, 220, 197, 0.95);
+      color: #5a4636;
+      margin-top: 2em;
+      width: 100%;
+    }
+    @keyframes fadeSlide {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+    /* Modal del mapa */
+    .modal-mapa {
+      display: none;
+      position: fixed;
+      z-index: 10000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      align-items: center;
+      justify-content: center;
+      animation: fadeIn 0.3s ease;
+    }
+    .modal-contenido {
+      background-color: #fffdf9;
+      padding: 1.5em;
+      border-radius: 15px;
+      width: 90%;
+      max-width: 700px;
+      position: relative;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      animation: slideUp 0.4s ease;
+    }
+    .modal-contenido h3 {
+      margin-top: 0;
+      color: #5a4636;
+    }
+    .cerrar {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 1.8em;
+      cursor: pointer;
+      color: #333;
+    }
+    .boton-mapa {
+      background-color: #5a4636;
+      color: white;
+      padding: 0.6em 1.4em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      margin-top: 1em;
+    }
+    .boton-mapa:hover {
+      background-color: #3c2e22;
+    }
+    @keyframes slideUp {
+      0% { transform: translateY(40px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    @keyframes fadeIn {
+      0% { background-color: rgba(0, 0, 0, 0); }
+      100% { background-color: rgba(0, 0, 0, 0.6); }
+    }
+    /* Mensaje de éxito del formulario */
+     #mensajeExito {
+      display: none;
+      padding: 1em;
+      margin-top: 1em;
+      background-color: #d4edda;
+      border: 1px solid #c3e6cb;
+      color: #155724;
+      border-radius: 5px;
+      font-weight: bold; 
+    }
+    /* Otros estilos existentes */
+    .producto-img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 10px;
+        background-color: white;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+    }
+    .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+    .producto {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 15px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 380px;
+    }
+    .producto img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 10px;
+    }
+
+    /* Estilo específico para la sección de fragancias */
+    #fragancias .productos-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    #fragancias .producto {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 350px;
+        box-sizing: border-box;
+    }
+
+    #fragancias .producto-img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 8px;
+        background-color: white;
+        padding: 10px;
+        box-sizing: border-box;
+        border: 1px solid #ddd;
+        margin: 0 auto;
+        display: block;
+    }
+
+    #fragancias .producto img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+        border-radius: 8px;
+    }
+
+    @keyframes brillo {
+      0% { text-shadow: 0 0 5px #fff; }
+      50% { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700; }
+      100% { text-shadow: 0 0 5px #fff; }
+    }
+    .brillo {
+      animation: brillo 3s infinite;
+    }
+    /* Estilos para la encuesta */
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #f5f5dc;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #5a4636;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+    input[type="text"], input[type="email"], select, textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+    .checkbox-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .checkbox-group label {
+      display: flex;
+      align-items: center;
+      font-weight: normal;
+    }
+    .checkbox-group input {
+      margin-right: 5px;
+    }
+    button {
+      background-color: #5a4636;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+      display: block;
+      margin: 20px auto;
+    }
+    button:hover {
+      background-color: #443426;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      color: #28a745;
+      font-weight: bold;
+      margin-top: 20px;
+    }
+    /* Galería de imágenes */
+    .galeria {
+      display: flex;
+      overflow-x: auto;
+      overflow-y: hidden;
+      gap: 15px;
+      padding: 10px 0;
+      scrollbar-width: thin;
+      scrollbar-color: #5a4636 #f5f5dc;
+    }
+    .galeria::-webkit-scrollbar {
+      height: 8px;
+    }
+    .galeria::-webkit-scrollbar-track {
+      background: #f5f5dc;
+      border-radius: 10px;
+    }
+    .galeria::-webkit-scrollbar-thumb {
+      background: #5a4636;
+      border-radius: 10px;
+    }
+    .galeria img {
+      flex: 0 0 auto;
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 8px;
+      background-color: white;
+      padding: 10px;
+      box-sizing: border-box;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .galeria img:hover {
+      transform: scale(1.02);
+    }
+    .seccion-galeria {
+      margin-bottom: 30px;
+    }
+    .seccion-galeria h3 {
+      color: #5a4636;
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 1.5em;
+    }
+    /* Videos */
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .video-container {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    /* Valoración */
+    .valoracion {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .estrellas {
+      font-size: 2em;
+      color: #ffd700;
+      cursor: pointer;
+    }
+    .estrellas i:hover,
+    .estrellas i.active {
+      color: #ffa500;
+    }
+    /* Cookies */
+    .cookie-modal {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      max-width: 400px;
+      z-index: 1000;
+    }
+    .cookie-modal button {
+      background-color: #5a4636;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    /* Estadísticas */
+    .grafico {
+      width: 100%;
+      height: 300px;
+      margin-top: 20px;
+    }
+    /* Redes sociales */
+    .redes-sociales {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin: 20px 0;
+    }
+    .redes-sociales a {
+      color: #5a4636;
+      font-size: 1.5em;
+      transition: color 0.3s ease;
+    }
+    .redes-sociales a:hover {
+      color: #b37a56;
+    }
+    /* Estilos para el carrito de compras */
+    .carrito {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: rgba(255, 255, 255, 0.95);
+      border-radius: 10px;
+      padding: 15px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+      z-index: 1001;
+      max-width: 350px;
+      max-height: 80vh;
+      overflow-y: auto;
+      display: none;
+    }
+    .carrito.visible {
+      display: block;
+    }
+    .carrito h3 {
+      margin-top: 0;
+      color: #5a4636;
+      text-align: center;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 10px;
+    }
+    .carrito ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+    .carrito li {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      display: flex;
+      align-items: center;
+    }
+    .carrito li:last-child {
+      border-bottom: none;
+    }
+    .carrito-item-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 5px;
+      margin-right: 10px;
+    }
+    .carrito-item-info {
+      flex: 1;
+    }
+    .carrito-item-info h4 {
+      margin: 0 0 5px 0;
+      font-size: 1em;
+      color: #5a4636;
+    }
+    .carrito-item-info p {
+      margin: 0;
+      font-size: 0.9em;
+      color: #666;
+    }
+    .carrito-item-remove {
+      color: #ff6b6b;
+      cursor: pointer;
+      margin-left: 10px;
+    }
+    .carrito button {
+      background-color: #5a4636;
+      color: white;
+      border: none;
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 10px;
+      font-weight: bold;
+    }
+    .carrito button:hover {
+      background-color: #443426;
+    }
+    .boton-carrito {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background-color: #5a4636;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      cursor: pointer;
+      z-index: 1000;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    }
+    .boton-carrito i {
+      font-size: 20px;
+    }
+    .contador-carrito {
+      position: absolute;
+      top: -10px;
+      right: -10px;
+      background-color: #ff6b6b;
+      color: white;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+    }
+    .carrito-vacio {
+      text-align: center;
+      padding: 20px;
+      color: #666;
+    }
+    /* Estilo para el botón de regresar */
+    .boton-regresar {
+      background-color: #5a4636;
+      color: white;
+      padding: 0.6em 1.4em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s ease;
+      margin-bottom: 15px;
+      display: inline-block;
+    }
+    .boton-regresar:hover {
+      background-color: #3c2e22;
+    }
+  </style>
+  <script>
+    // Funciones para mostrar secciones y categorías
+    function toggleSection(id) {
+      document.querySelectorAll('.section').forEach(section => {
+        section.classList.remove('visible');
+      });
+      const target = document.getElementById(id);
+      target.classList.add('visible');
+      target.style.animation = "none";
+      target.offsetHeight;
+      target.style.animation = null;
+    }
+    function mostrarCategoria(categoriaId) {
+      document.querySelectorAll('.categoria-producto').forEach(category => {
+        category.style.display = 'none';
+      });
+      const categoria = document.getElementById(categoriaId);
+      if (categoria) {
+        categoria.style.display = 'block';
+      }
+      toggleSection('productos');
+    }
+    // Carrito de compras
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+    function toggleCarrito() {
+      const carritoElement = document.getElementById('carrito');
+      carritoElement.classList.toggle('visible');
+      actualizarCarrito();
+    }
+    function agregarAlCarrito(nombre, precio, imagen) {
+      carrito.push({ nombre, precio, imagen });
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarCarrito();
+      alert('Producto agregado al carrito');
+    }
+    function eliminarDelCarrito(index) {
+      carrito.splice(index, 1);
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarCarrito();
+    }
+    function actualizarCarrito() {
+      const listaCarrito = document.getElementById('listaCarrito');
+      const contadorCarrito = document.getElementById('contadorCarrito');
+      listaCarrito.innerHTML = '';
+      let total = 0;
+      if (carrito.length === 0) {
+        listaCarrito.innerHTML = '<div class="carrito-vacio">Tu carrito está vacío</div>';
+      } else {
+        carrito.forEach((item, index) => {
+          const li = document.createElement('li');
+          li.innerHTML = `
+            <img src="${item.imagen}" alt="${item.nombre}" class="carrito-item-img">
+            <div class="carrito-item-info">
+              <h4>${item.nombre}</h4>
+              <p>L${item.precio.toFixed(2)}</p>
+            </div>
+            <span class="carrito-item-remove" onclick="eliminarDelCarrito(${index})">✕</span>
+          `;
+          listaCarrito.appendChild(li);
+          total += item.precio;
+        });
+        const liTotal = document.createElement('li');
+        liTotal.innerHTML = `<strong>Total:</strong><strong>L${total.toFixed(2)}</strong>`;
+        listaCarrito.appendChild(liTotal);
+      }
+      contadorCarrito.textContent = carrito.length;
+    }
+    function enviarCarrito() {
+      if (carrito.length === 0) {
+        alert('Tu carrito está vacío.');
+        return;
+      }
+      let mensaje = 'Hola Sady, quiero cotizar/comprar los siguientes productos:\n\n';
+      carrito.forEach(item => {
+        mensaje += `- ${item.nombre}: L${item.precio.toFixed(2)}\n`;
+      });
+      const total = carrito.reduce((sum, item) => sum + item.precio, 0);
+      mensaje += `\n**Total estimado: L${total.toFixed(2)}**`;
+      window.open(`https://wa.me/50489432128?text=${encodeURIComponent(mensaje)}`, '_blank');
+    }
+    // Inicializar el carrito al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      actualizarCarrito();
+    });
+    // Funciones adicionales (frases, mapa, etc.)
+    function abrirMapa() {
+      document.getElementById('modalMapa').style.display = 'flex';
+    }
+    function cerrarMapa() {
+      document.getElementById('modalMapa').style.display = 'none';
+    }
+    window.onclick = function(event) {
+      const modal = document.getElementById('modalMapa');
+      if (event.target === modal) {
+        modal.style.display = "none";
+      }
+    }
+    function enviarFormulario(event) {
+      event.preventDefault();
+      const mensaje = document.getElementById('mensajeExito');
+      mensaje.style.display = 'block';
+      event.target.reset();
+      setTimeout(() => {
+        mensaje.style.display = 'none';
+      }, 4000);
+    }
+    function buscarproductos(event) {
+      event.preventDefault();
+      const searchInput = document.querySelector('.search-input-productos');
+      const searchTerm = searchInput.value.toLowerCase();
+      document.querySelectorAll('.categoria-producto').forEach(category => {
+        category.style.display = 'none';
+      });
+      document.querySelectorAll('.categoria-producto').forEach(category => {
+        const categoryName = category.querySelector('h3').textContent.toLowerCase();
+        const items = category.querySelectorAll('h4, p');
+        let found = false;
+        items.forEach(item => {
+          if (item.textContent.toLowerCase().includes(searchTerm)) {
+            found = true;
+          }
+        });
+        if (categoryName.includes(searchTerm) || found) {
+          category.style.display = 'block';
+        }
+      });
+    }
+    function redirigirBusqueda(event) {
+      event.preventDefault();
+      const input = document.getElementById("searchInput").value.toLowerCase();
+      if (input.includes("base") || input.includes("foundation")) {
+        window.location.href = "https://www.sephora.com/shop/foundation-makeup";
+      } else if (input.includes("labial") || input.includes("lipstick")) {
+        window.location.href = "https://www.ulta.com/makeup/lips/lipstick";
+      } else if (input.includes("máscara") || input.includes("rímel") || input.includes("mascara")) {
+        window.location.href = "https://www.amazon.com/s?k=mascara+makeup";
+      } else if (input.includes("rubor") || input.includes("blush")) {
+        window.location.href = "https://www.sephora.com/shop/blush";
+      } else {
+        const query = encodeURIComponent(input);
+        window.location.href = `https://www.google.com/search?q=${query}`;
+      }
+      return false;
+    }
+    const frasesBonitas = [
+      "La belleza comienza en el momento en que decides ser tú misma.",
+      "El cuidado personal es cómo te tratas a ti misma, no cómo te ven los demás.",
+      "La elegancia es la única belleza que nunca se desvanece.",
+      "La belleza es poder; una sonrisa es su espada.",
+      "El maquillaje es arte, y tu rostro es el lienzo.",
+      "La vida es corta, usa más glitter.",
+      "Brilla como el sol, pero cuida tu piel como la luna.",
+      "La confianza es el mejor maquillaje que puedes usar."
+    ];
+    const frasesProductos = [
+      "Descubre la magia de nuestros productos de belleza premium.",
+      "Cada producto es una obra de arte, cuidadosamente seleccionado para ti.",
+      "Transforma tu rutina de belleza con nuestros productos exclusivos.",
+      "La belleza es diversión, ¡experimenta con nuestros productos!",
+      "Tu piel merece lo mejor, y nosotros te lo ofrecemos."
+    ];
+    const frasesCuidados = [
+      "El cuidado personal es el primer paso para sentirte bien.",
+      "Tu piel merece lo mejor, cuídala con amor.",
+      "El cuidado del cabello es esencial para mantenerlo sano y brillante.",
+      "El autocuidado no es egoísmo, es supervivencia.",
+      "La belleza es salud, y la salud es belleza."
+    ];
+    function mostrarFraseAleatoriaInicio() {
+      const fraseAleatoria = frasesBonitas[Math.floor(Math.random() * frasesBonitas.length)];
+      document.getElementById('fraseDinamicaInicio').textContent = fraseAleatoria;
+    }
+    function mostrarFraseAleatoriaProductos() {
+      const fraseAleatoria = frasesProductos[Math.floor(Math.random() * frasesProductos.length)];
+      document.getElementById('fraseDinamicaProductos').textContent = fraseAleatoria;
+    }
+    function mostrarFraseAleatoriaCuidados() {
+      const fraseAleatoria = frasesCuidados[Math.floor(Math.random() * frasesCuidados.length)];
+      document.getElementById('fraseDinamicaCuidados').textContent = fraseAleatoria;
+    }
+    function generarTablaEstadisticas() {
+      const contenedor = document.getElementById('grafico-estadisticas');
+      const datosEstadisticas = [
+        { producto: "Limpiadores faciales", ventas: 120, popularidad: 4 },
+        { producto: "Cremas hidratantes", ventas: 95, popularidad: 5 },
+        { producto: "Serums de vitamina C", ventas: 88, popularidad: 3 },
+        { producto: "Bases líquidas", ventas: 150, popularidad: 4 },
+        { producto: "Labiales", ventas: 200, popularidad: 5 },
+        { producto: "Shampoo sin sal", ventas: 75, popularidad: 3 }
+      ];
+      let tabla = '<table><thead><tr><th>Producto</th><th>Ventas</th><th>Popularidad</th></tr></thead><tbody>';
+      datosEstadisticas.forEach(item => {
+        tabla += `<tr><td>${item.producto}</td><td>${item.ventas}</td><td>${'⭐'.repeat(item.popularidad)}</td></tr>`;
+      });
+      tabla += '</tbody></table>';
+      contenedor.innerHTML = tabla;
+    }
+    function valorar(estrellas) {
+      const stars = document.querySelectorAll('.estrellas i');
+      stars.forEach((star, index) => {
+        if (index < estrellas) {
+          star.classList.add('active');
+        } else {
+          star.classList.remove('active');
+        }
+      });
+      document.getElementById('valoracion-texto').textContent = `¡Gracias por tu valoración de ${estrellas} estrellas!`;
+    }
+    function aceptarCookies() {
+      document.getElementById('cookieModal').style.display = 'none';
+      localStorage.setItem('cookiesAceptadas', 'true');
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+      mostrarFraseAleatoriaInicio();
+      mostrarFraseAleatoriaProductos();
+      mostrarFraseAleatoriaCuidados();
+      generarTablaEstadisticas();
+      if (!localStorage.getItem('cookiesAceptadas')) {
+        document.getElementById('cookieModal').style.display = 'block';
+      }
+      document.querySelectorAll('form').forEach(form => {
+        form.addEventListener('submit', enviarFormulario);
+      });
+    });
+    setInterval(mostrarFraseAleatoriaInicio, 5000);
+    setInterval(mostrarFraseAleatoriaProductos, 5000);
+    setInterval(mostrarFraseAleatoriaCuidados, 5000);
+  </script>
+</head>
+<body>
+  <header class="navbar">
+    <div class="logo">
+      <a href="C:\Users\sadyd\OneDrive\Escritorio\Logo Circular de Nombre Corazón Acuarela Femenino Artístico Rosa y Negro.png target="_blank" rel="noopener noreferrer">
+        <img src="C:\Users\sadyd\OneDrive\Escritorio\Logo Circular de Nombre Corazón Acuarela Femenino Artístico Rosa y Negro.png" alt="Logo SD Elegance">
+      </a>
+    </div>
+    <!-- Menú rediseñado -->
+    <nav class="menu-principal">
+      <ul class="menu-lista">
+        <li class="menu-item"><a href="#" onclick="toggleSection('inicio')">Inicio</a></li>
+        <li class="menu-item dropdown">
+          <a href="#">Productos <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="#" onclick="mostrarCategoria('skincare')">Skincare</a></li>
+            <li><a href="#" onclick="mostrarCategoria('maquillaje')">Maquillaje</a></li>
+            <li><a href="#" onclick="mostrarCategoria('cuidado-capilar')">Cuidado Capilar</a></li>
+            <li><a href="#" onclick="mostrarCategoria('unas')">Uñas</a></li>
+            <li><a href="#" onclick="mostrarCategoria('cuerpo')">Cuidado Corporal</a></li>
+            <li><a href="#" onclick="mostrarCategoria('accesorios')">Accesorios</a></li>
+            <li><a href="#" onclick="mostrarCategoria('masajes')">Masajes</a></li>
+            <li><a href="#" onclick="mostrarCategoria('fragancias')">Fragancias</a></li>
+          </ul>
+        </li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('cuidados')">Cuidados</a></li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('compatibilidad')">Compatibilidad</a></li>
+        <li class="menu-item dropdown">
+          <a href="#">Formularios <i class="fas fa-chevron-down"></i></a>
+          <ul class="submenu">
+            <li><a href="#" onclick="toggleSection('formularios')">Producto Favorito</a></li>
+            <li><a href="#" onclick="toggleSection('encuestas')">Encuesta Maquillaje</a></li>
+          </ul>
+        </li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('estadisticas')">Estadísticas</a></li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('galeria')">Galería</a></li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('videos')">Videos</a></li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('valoracion')">Valoración</a></li>
+        <li class="menu-item"><a href="#" onclick="toggleSection('contacto')">Contacto</a></li>
+      </ul>
+    </nav>
+    <!-- Fin del menú rediseñado --> 
+             <form class="search-form" onsubmit="return redirigirBusqueda(event)">
+      <input type="text" class="search-input" placeholder="Buscar productos de maquillaje..." name="q" id="searchInput">
+      <button type="submit" class="search-button">Buscar</button>
+    </form>      
+  </header>
+  <main>
+</main>
+
+    <!-- Todas tus secciones originales aquí -->
+    <section id="inicio" class="section visible">
+      <h1 class="titulo-grande">Bienvenidos a SD Elegance</h1>
+      <p id="fraseDinamicaInicio" class="brillo"></p>
+      <div class="redes-sociales">
+        <a href="https://instagram.com/duartesady_02" target="_blank"><i class="fab fa-instagram"></i></a>
+        <a href="https://wa.me/50489432128" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        <a href="https://www.tiktok.com/@sadyduarte03" target="_blank"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.facebook.com/SadyDuarte" target="_blank"><i class="fab fa-facebook"></i></a>
+      </div>
+    </section>
+    <section id="productos" class="section">
+      <h2>Productos de Belleza</h2>
+      <p id="fraseDinamicaProductos" class="brillo"></p>
+      <div id="skincare" class="categoria-producto">
+        <h3>✨ Skincare</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\limpiador facial.jpg" alt="Limpiadores faciales" class="producto-img">
+            <h4>Limpiador Facial Cetaphil</h4>
+            <p>Marca: Cetaphil</p>
+            <p class="producto-precio">L150.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Limpiador Facial Cetaphil', 150, 'https://m.media-amazon.com/images/I/71gzqzvhb-L._SL1500_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\la roche.jpg" alt="Cremas hidratantes" class="producto-img">
+            <h4>Crema Hidratante La Roche-Posay</h4>
+            <p>Marca: La Roche-Posay</p>
+            <p class="producto-precio">L220.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Crema Hidratante La Roche-Posay', 220, 'https://www.laroche-posay.com.mx/-/media/project/loreal/brand-sites/lrp/america/latam/products/toleriane/sensitive-prebiotic-moisturizer/la-roche-posay-productpage-sensitive-allergic-toleriane-sensitive-prebiotic-40ml-3337875578486-front.png')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\ordinary.jpg" alt="Serums" class="producto-img">
+            <h4>Serum Vitamina C The Ordinary</h4>
+            <p>Marca: The Ordinary</p>
+            <p class="producto-precio">L300.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Serum Vitamina C The Ordinary', 300, 'https://www.skincareluce.com/cdn/shop/products/vitamina-c-the-ordinary-panama.jpg?v=1646953670')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\evian.jpg" alt="Hydrating facial mist" class="producto-img">
+            <h4>Hydrating Facial Mist Evian</h4>
+            <p>Marca: Evian</p>
+            <p class="producto-precio">L180.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Hydrating Facial Mist Evian', 180, 'https://m.media-amazon.com/images/I/519dkU8XATL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\olehen.jpg" alt="Brightening facial serum" class="producto-img">
+            <h4>Brightening Serum Ole Henriksen</h4>
+            <p>Marca: Ole Henriksen</p>
+            <p class="producto-precio">L350.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Brightening Serum Ole Henriksen', 350, 'https://olehenriksen.com/cdn/shop/files/GC_ICONS_2023_BBS.jpg?v=1685945379&width=480')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\olay.jpg" alt="Anti-aging night cream" class="producto-img">
+            <h4>Anti-Aging Night Cream Olay</h4>
+            <p>Marca: Olay</p>
+            <p class="producto-precio">L280.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Anti-Aging Night Cream Olay', 280, 'https://m.media-amazon.com/images/I/71SvAQ4aABL.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\carbon.jpg" alt="Mascarilla de carbón" class="producto-img">
+            <h4>Mascarilla de Carbón Activado</h4>
+            <p>Marca: Freeman</p>
+            <p class="producto-precio">L160.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Mascarilla de Carbón Freeman', 160, 'https://bio-land.com/_next/image?url=https%3A%2F%2Fadmin.bio-land.com%2Fwp-content%2Fuploads%2F2024%2F09%2FArtboard-1-copy-44.jpg&w=3840&q=75')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\protector.jpg" alt="Protector solar" class="producto-img">
+            <h4>Protector Solar FPS 50</h4>
+            <p>Marca: Neutrogena</p>
+            <p class="producto-precio">L200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Protector Solar Neutrogena', 200, 'https://media-pierre-fabre.wedia-group.com/api/wedia/dam/transform/u5wa3z31qn5se8zaxwqp7kemidy96p4oxfa67sa/pim_thumbnailReal?&t=resize&height=700')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="maquillaje" class="categoria-producto">
+        <h3>💄 Maquillaje</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\liquida.jpg" alt="Base líquida" class="producto-img">
+            <h4>Base Líquida Estée Lauder</h4>
+            <p>Marca: Estée Lauder</p>
+            <p class="producto-precio">L450.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Base Líquida Estée Lauder', 450,  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYKAh_wCBc2rIQ6CcjpUlKinsyE7-onuYpVw&s')" >Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\paleta naked3.jpg" alt="Paleta de sombras" class="producto-img">
+            <h4>Paleta de Sombras Urban Decay</h4>
+            <p>Marca: Urban Decay</p>
+            <p class="producto-precio">L500.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Paleta de Sombras Urban Decay', 500, 'https://m.media-amazon.com/images/I/817hWwjbHUL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\mate labial.jpg" alt="Labial" class="producto-img">
+            <h4>Labial Matte Maybelline</h4>
+            <p>Marca: Maybelline</p>
+            <p class="producto-precio">L120.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Labial Matte Maybelline', 120, 'https://walmarthn.vtexassets.com/arquivos/ids/519241/38252_01.jpg?v=638662848981330000')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\corrector.jpg" alt="Corrector" class="producto-img">
+            <h4>Corrector NARS</h4>
+            <p>Marca: NARS</p>
+            <p class="producto-precio">L250.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Corrector NARS', 250, 'https://myevastore.com/cdn/shop/products/corrector-nars-radiant-creamy-180353_1024x1024.jpg?v=1648518845')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\loreal.jpg" alt="Máscara de pestañas" class="producto-img">
+            <h4>Máscara de Pestañas L'Oréal</h4>
+            <p>Marca: L'Oréal</p>
+            <p class="producto-precio">L180.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Máscara de Pestañas L\'Oréal', 180, 'https://www.loreal-paris.es/-/media/project/loreal/brand-sites/oap/emea/es/products/makeup/eye-makeup/volume-million-lashes/mascara-panorama/panorama-mascara-packshot-v2.png')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\iluminador.png" alt="Iluminador" class="producto-img">
+            <h4>Iluminador Benefit</h4>
+            <p>Marca: Benefit</p>
+            <p class="producto-precio">L320.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Iluminador Benefit', 320, 'https://www.benefitcosmetics.com/dw/image/v2/BKFV_PRD/on/demandware.static/-/Sites-bencos-master-catalog/default/dw9e99b5ea/product_images/HIGHBEAM/Large_2_producteditorial_highbeam.jpg?sw=624&sh=624&q=85')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\iluminador.png" alt="Rubor" class="producto-img">
+            <h4>Rubor MAC</h4>
+            <p>Marca: MAC</p>
+            <p class="producto-precio">L220.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Rubor MAC', 220, 'https://sdcdn.io/mac/us/mac_sku_M22018_1x1_0.png?width=1440&height=1440')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\delineador.jpg" alt="Delineador" class="producto-img">
+            <h4>Delineador NYX</h4>
+            <p>Marca: NYX</p>
+            <p class="producto-precio">L100.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Delineador NYX', 100, 'https://static.sweetcare.com/img/prd/488/v-638687563397184536/nyx-professional-make-up-022404xk_05.webp')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="cuidado-capilar" class="categoria-producto">
+        <h3>🧴 Cuidado Capilar</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\shampoo sin sal.jpg" alt="Shampoo sin sal" class="producto-img">
+            <h4>Shampoo Sin Sal Pantene</h4>
+            <p>Marca: Pantene</p>
+            <p class="producto-precio">L130.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Shampoo Sin Sal Pantene', 130, 'https://m.media-amazon.com/images/I/81K+QTP2kDL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\morocann.jpg" class="producto-img">
+            <h4> Aceite de Argán Moroccanoil</h4>
+            <p>Marca: Moroccanoil</p>
+            <p class="producto-precio">L200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Aceite de Argán Moroccanoil', 200, 'https://thebeautylab.do/cdn/shop/products/TheBeautyLabByLaComparona_37_f820e62e-7104-48e8-872f-851029f0ae4e.png?v=1633305467')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\keratina.jpg" alt="Keratina" class="producto-img">
+            <h4>Keratina Brazilian Blowout</h4>
+            <p>Marca: Brazilian Blowout</p>
+            <p class="producto-precio">L400.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Keratina Brazilian Blowout', 400, 'https://www.brazilianblowout.com/cdn/shop/products/22BBD352.png?v=1648850971')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\tinte loreal.jpg" alt="Tinte" class="producto-img">
+            <h4>Tinte para Cabello L'Oréal</h4>
+            <p>Marca: L'Oréal</p>
+            <p class="producto-precio">L160.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Tinte para Cabello L\'Oréal', 160, 'https://es.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/hair-color/semi-permanent/colorista-hair-makeup-temporary-1-day-hair-color-spray/rosegold/071249337844_t1.png')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\herbal.jpg" alt="Mousse" class="producto-img">
+            <h4>Mousse Herbal Essences</h4>
+            <p>Marca: Herbal Essences</p>
+            <p class="producto-precio">L140.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Mousse Herbal Essences', 140, 'https://walmarthn.vtexassets.com/arquivos/ids/393048-800-450?v=638478958753500000&width=800&height=450&aspect=true')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\Fructis.jpg" alt="Acondicionador" class="producto-img">
+            <h4>Acondicionador Garnier</h4>
+            <p>Marca: Garnier</p>
+            <p class="producto-precio">L120.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Acondicionador Garnier', 120, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQE9RWtHlfngMhBeHcV4Ej9JZGiIGz0HDj51w&s')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\treseme.jpg" alt="Spray térmico" class="producto-img">
+            <h4>Spray Térmico TRESemmé</h4>
+            <p>Marca: TRESemmé</p>
+            <p class="producto-precio">L150.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Spray Térmico TRESemmé', 150, 'https://chedrauimx.vtexassets.com/arquivos/ids/52037875-800-auto?v=638894330299670000&width=800&height=auto&aspect=true')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\rerastasee.jpg" alt="Mascarilla capilar" class="producto-img">
+            <h4>Mascarilla Capilar Kerastase</h4>
+            <p>Marca: Kerastase</p>
+            <p class="producto-precio">L300.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Mascarilla Capilar Kerastase', 300, 'https://static.sweetcare.com/img/prd/488/v-638200522831660189/kerastase-006095ke_01.webp')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="unas" class="categoria-producto">
+        <h3>💅 Productos para Uñas</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\esmalte OPI.jpg" alt="Esmalte" class="producto-img">
+            <h4>Esmalte de Uñas OPI</h4>
+            <p>Marca: OPI</p>
+            <p class="producto-precio">L90.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Esmalte de Uñas OPI', 90, 'https://esteticagmel.com/wp-content/uploads/2020/11/Opi-los-mejores-esmaltes-para-unas.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\kit.jpg" alt="Kit manicura" class="producto-img">
+            <h4>Kit de Manicura Tweezerman</h4>
+            <p>Marca: Tweezerman</p>
+            <p class="producto-precio">L250.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Kit de Manicura Tweezerman', 250, 'https://tweezerman.com/cdn/shop/files/vlk7nnxbypeckzvtyncm_grande.png?v=1753703073')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\uñas.jpg" alt="Uñas postizas" class="producto-img">
+            <h4>Uñas Postizas Kiss</h4>
+            <p>Marca: Kiss</p>
+            <p class="producto-precio">L180.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Uñas Postizas Kiss', 180, 'https://sallybeauty.vtexassets.com/arquivos/ids/163000-800-auto?v=637504627406530000&width=800&height=auto&aspect=true')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\gel se uñas CND.jpg" alt="Gel para uñas" class="producto-img">
+            <h4>Gel para Uñas CND</h4>
+            <p>Marca: CND</p>
+            <p class="producto-precio">L300.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Gel para Uñas CND', 300, 'https://m.media-amazon.com/images/I/617IdkUrYhL._UF350,350_QL50_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\removedor.jpg" alt="Removedor" class="producto-img">
+            <h4>Removedor de Esmalte Cutex</h4>
+            <p>Marca: Cutex</p>
+            <p class="producto-precio">L60.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Removedor de Esmalte Cutex', 60, 'https://storage.googleapis.com/rec-productos/7501015903407.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\aceite de cuticula.jpg" alt="Aceite cutículas" class="producto-img">
+            <h4>Aceite para Cutículas Burt's Bees</h4>
+            <p>Marca: Burt's Bees</p>
+            <p class="producto-precio">L80.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Aceite para Cutículas Burt\'s Bees', 80, 'https://mexico.burtsbees.com/wp-content/uploads/sites/12/2018/06/NI-36718_BBu_BTL_CompleteFacialOil_.51floz_ecom_0217_14-02-17-1622.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\uñas acrilicas.jpg" alt="Uñas acrílicas" class="producto-img">
+            <h4>Uñas Acrílicas Impress</h4>
+            <p>Marca: Impress</p>
+            <p class="producto-precio">L200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Uñas Acrílicas Impress', 200, 'https://bellisima.mx/cdn/shop/files/Kiss_ImpressPressOnManicure_KIM014_Package_Front_731509837759_Oct.30.2020.jpg?v=1712086130')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\esmalte en gel.jpg" alt="Esmalte en gel" class="producto-img">
+            <h4>Esmalte en Gel Gelish</h4>
+            <p>Marca: Gelish</p>
+            <p class="producto-precio">L220.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Esmalte en Gel Gelish', 220, 'https://dmujeresec.vtexassets.com/arquivos/ids/171679/dmujeres-gelish-gel-polish-foundation-15-ml-1310002-1-1718310839355247.jpg?v=638724934040230000')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="cuerpo" class="categoria-producto">
+        <h3>🧼 Cuidado Corporal</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\exfoliante cafe.jpg" alt="Exfoliante" class="producto-img">
+            <h4>Exfoliante de Café Frank Body</h4>
+            <p>Marca: Frank Body</p>
+            <p class="producto-precio">L190.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Exfoliante de Café Frank Body', 190, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLLMQMdzkq03NkX07qi2bFSoyPar7xQeLUXQ&s')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\AVENO.jpg" alt="Crema humectante" class="producto-img">
+            <h4>Crema Humectante Aveeno</h4>
+            <p>Marca: Aveeno</p>
+            <p class="producto-precio">L210.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Crema Humectante Aveeno', 210, 'https://m.media-amazon.com/images/I/517rXO9vclL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\victorias secrert.jpg" alt="Body splash" class="producto-img">
+            <h4>Body Splash Victoria's Secret</h4>
+            <p>Marca: Victoria's Secret</p>
+            <p class="producto-precio">L250.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Body Splash Victoria\'s Secret', 250, 'https://cdn.awsli.com.br/2500x2500/1878/1878158/produto/271026754/imagem-do-whatsapp-de-2024-05-31---s--15-22-39_f85170d1-0bs1qmsnjy.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\NIVEA.jpg" alt="Leche corporal" class="producto-img">
+            <h4>Leche Corporal Nivea</h4>
+            <p>Marca: Nivea</p>
+            <p class="producto-precio">L140.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Leche Corporal Nivea', 140, 'https://img.nivea.com/-/media/miscellaneous/media-center-items/8/0/c/341366-web_1010x1180_transparent_png.png')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\DOVE.jpg" alt="Gel de ducha" class="producto-img">
+            <h4>Gel de Ducha Dove</h4>
+            <p>Marca: Dove</p>
+            <p class="producto-precio">L110.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Gel de Ducha Dove', 110, 'https://lacolonia.vtexassets.com/arquivos/ids/215574-800-800?v=637151510275670000&width=800&height=800&aspect=true')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\CREMA DE MANOS.jpg" alt="Crema de manos" class="producto-img">
+            <h4>Crema de Manos Neutrogena</h4>
+            <p>Marca: Neutrogena</p>
+            <p class="producto-precio">L130.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Crema de Manos Neutrogena', 130, 'https://static.sweetcare.com/img/prd/488/v-638569845728763178/neutrogena-001803ne_01.webp')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\EXFO CORPORAL.png" alt="Exfoliante corporal" class="producto-img">
+            <h4>Exfoliante Corporal Tree Hut</h4>
+            <p>Marca: Tree Hut</p>
+            <p class="producto-precio">L170.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Exfoliante Corporal Tree Hut', 170, 'https://essenzhn.com/cdn/shop/files/exfoliantewatermelon.png?v=1716354713')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\Desodorante Rexona.jpg" alt="Desodorante" class="producto-img">
+            <h4>Desodorante Rexona</h4>
+            <p>Marca: Rexona</p>
+            <p class="producto-precio">L80.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Desodorante Rexona', 80, 'https://walmarthn.vtexassets.com/arquivos/ids/314631/Antitranspirante-Rexona-Dama-Powder-Dry-Aerosol-150ml-2-25154.jpg?v=638307347914330000')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="accesorios" class="categoria-producto">
+        <h3>🛍️ Accesorios de Belleza</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\brochas.jpg" alt="Brochas" class="producto-img">
+            <h4>Brochas Profesionales Sigma</h4>
+            <p>Marca: Sigma</p>
+            <p class="producto-precio">L350.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Brochas Profesionales Sigma', 350, 'https://glossecuador.com/wp-content/uploads/2020/03/13561.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\ESPREJO LED.jpg" alt="Espejo LED" class="producto-img">
+            <h4>Espejo con Luz LED Simplehuman</h4>
+            <p>Marca: Simplehuman</p>
+            <p class="producto-precio">L800.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Espejo con Luz LED Simplehuman', 800, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR2CFZmJ5iWD9RZb3yPxBd5LYbrbgtizRMXSg&s')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\organizador.jpg" alt="Organizador" class="producto-img">
+            <h4>Organizador Acrílico Madesmart</h4>
+            <p>Marca: Madesmart</p>
+            <p class="producto-precio">L200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Organizador Acrílico Madesmart', 200, 'https://m.media-amazon.com/images/I/81IaXXT3xTL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\DAYSON.png" alt="Secador" class="producto-img">
+            <h4>Secador de Pelo Dyson</h4>
+            <p>Marca: Dyson</p>
+            <p class="producto-precio">L1200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Secador de Pelo Dyson', 1200, 'https://dyson-h.assetsadobe2.com/is/image/content/dam/dyson/images/products/hero-locale/es_ES/390244-01.png?$responsive$&cropPathE=mobile&fit=stretch,1&wid=640')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\PLANCHA.jpg" alt="Plancha" class="producto-img">
+            <h4>Plancha para Cabello GHD</h4>
+            <p>Marca: GHD</p>
+            <p class="producto-precio">L900.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Plancha para Cabello GHD', 900, 'https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_135393849?x=536&y=402&format=jpg&quality=80&sp=yes&strip=yes&trim&ex=536&ey=402&align=center&resizesource&unsharp=1.5x1+0.7+0.02&cox=0&coy=0&cdx=536&cdy=402')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\REMINTONG.jpg" alt="Rizador" class="producto-img">
+            <h4>Rizador de Pelo Remington</h4>
+            <p>Marca: Remington</p>
+            <p class="producto-precio">L700.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Rizador de Pelo Remington', 700, 'https://www.remingtonlatam.com/hn/wp-content/uploads/sites/25/2022/10/CI24AW-Rizador-De-Cabello-Remington-Coleccion-Botanicals-01.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\ESPONJAS.jpg" alt="Esponjas" class="producto-img">
+            <h4>Esponjas de Maquillaje Beautyblender</h4>
+            <p>Marca: Beautyblender</p>
+            <p class="producto-precio">L250.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Esponjas de Maquillaje Beautyblender', 250, 'https://cosmos-beauty.mx/cdn/shop/products/esponja-para-maquillarse-blending.jpg?v=1676573053')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\BROCHASSSS.jpg" alt="Pinceles" class="producto-img">
+            <h4>Set de Pinceles Real Techniques</h4>
+            <p>Marca: Real Techniques</p>
+            <p class="producto-precio">L300.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Set de Pinceles Real Techniques', 300, 'https://krizrealestudio.com/cdn/shop/files/1895RTARTISTESSENTIALSOUT-L_2400x_26314394-a5c1-4bca-8313-b26e7c05cd83_1200x1200.webp?v=1693694209')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="masajes" class="categoria-producto">
+        <h3>💆‍♀️ Masajes Corporales</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\OREGANOOOO.jpg" alt="Aceite aromaterapia" class="producto-img">
+            <h4>Aceite de Aromaterapia Aura Cacia</h4>
+            <p>Marca: Aura Cacia</p>
+            <p class="producto-precio">L180.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Aceite de Aromaterapia Aura Cacia', 180, 'https://m.media-amazon.com/images/I/61l0VcJRDSL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\PRIEDAS VOLCA NICAS.jpg" alt="Piedras volcánicas" class="producto-img">
+            <h4>Piedras Volcánicas</h4>
+            <p>Marca: Basalt</p>
+            <p class="producto-precio">L250.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Piedras Volcánicas Basalt', 250, 'https://bestmassage.mx/cdn/shop/products/1_c7b3b273-a5a9-42c4-9a6b-7b7b5a27ab0f.jpg?v=1573845811')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src= "C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\RODILLO.jpg"alt="Rodillo facial" class="producto-img">
+            <h4>Rodillo Facial Jade Roller</h4>
+            <p>Marca: Jade Roller</p>
+            <p class="producto-precio">L220.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Rodillo Facial Jade Roller', 220, 'https://promart.vteximg.com.br/arquivos/ids/884626-1000-1000/image-1c78820a897640738e1a76a33e84c4a1.jpg?v=637545248110700000')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\MASAJEADOR PIES.jpg" alt="Masajeador de pies" class="producto-img">
+            <h4>Masajeador de Pies HoMedics</h4>
+            <p>Marca: HoMedics</p>
+            <p class="producto-precio">L300.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Masajeador de Pies HoMedics', 300, 'https://assets.mmsrg.com/isr/166325/c1/-/ASSET_MP_146198008/fee_786_587_png')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\ESPALDAAA.jpg" alt="Masajeador de cuello" class="producto-img">
+            <h4>Masajeador de Cuello Zyllion</h4>
+            <p>Marca: Zyllion</p>
+            <p class="producto-precio">L400.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Masajeador de Cuello Zyllion', 400, 'https://manuals.plus/wp-content/uploads/2022/10/Zyllion-Shiatsu-Back-and-Neck-Massager.png')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\CUELLLO.jpg" alt="Masajeador de espalda" class="producto-img">
+            <h4>Masajeador de Espalda Renpho</h4>
+            <p>Marca: Renpho</p>
+            <p class="producto-precio">L450.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Masajeador de Espalda Renpho', 450, 'https://m.media-amazon.com/images/I/71OL4vbYyBL._UF350,350_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\NOW SOLUTION.jpg" alt="Aceite de masaje" class="producto-img">
+            <h4>Aceite de Masaje Now Solutions</h4>
+            <p>Marca: Now Solutions</p>
+            <p class="producto-precio">L190.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Aceite de Masaje Now Solutions', 190, 'https://http2.mlstatic.com/D_NQ_NP_923004-CBT82374686567_022025-O.webp')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\NAIPO.jpg" alt="Masajeador portátil" class="producto-img">
+            <h4>Masajeador Portátil Naipo</h4>
+            <p>Marca: Naipo</p>
+            <p class="producto-precio">L500.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Masajeador Portátil Naipo', 500, 'https://i5.walmartimages.com.mx/mg/gm/1p/images/product-images/img_large/00071237677792l.jpg')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <div id="fragancias" class="categoria-producto">
+        <h3>🌸 Fragancias</h3>
+        <div class="productos-grid">
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\CHANEL.jpg" alt="Perfume" class="producto-img">
+            <h4>Perfume Chanel N°5</h4>
+            <p>Marca: Chanel</p>
+            <p class="producto-precio">L800.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Perfume Chanel N°5', 800, 'https://tienda.divasstore.hn/cdn/shop/products/358210E5-ADB5-4B81-A76A-F3A424FAD6EE.jpg?v=1674401082')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\NAUTICA.jpg" alt="Colonia" class="producto-img">
+            <h4>Colonia Nautica Voyage</h4>
+            <p>Marca: Nautica</p>
+            <p class="producto-precio">L350.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Colonia Nautica Voyage', 350, 'https://www.costco.com.mx/medias/sys_master/products/haf/h47/11535708586014.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\ACEITES PERF.jpg" alt="Aceites esenciales" class="producto-img">
+            <h4>Aceites Esenciales DoTerra</h4>
+            <p>Marca: DoTerra</p>
+            <p class="producto-precio">L220.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Aceites Esenciales DoTerra', 220, 'https://doterra-prod-media1.s3.amazonaws.com/sys-master/root/ha5/h9d/29376951975966/566x819-most-popular-oils-shop.jpg')">Agregar al carrito</button>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\TOM FORD.jpg" alt="Perfume de lujo" class="producto-img">
+            <h4>Perfume Tom Ford Black Orchid</h4>
+            <p>Marca: Tom Ford</p>
+            <p class="producto-precio">L1200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Perfume Tom Ford Black Orchid', 1200, 'https://priveperfumes.com/cdn/shop/files/perfume-tom-ford-black-orchid-edp-w-100-ml-1-prive-perfumes.webp?v=1743661983&width=1600')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\acgua.jpg" alt="Agua de colonia" class="producto-img">
+            <h4>Agua de Colonia 4711</h4>
+            <p>Marca: 4711</p>
+            <p class="producto-precio">L280.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Agua de Colonia 4711', 280, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRaaO72t8XewEGPh3rQ5SilNTmgi8UYABRNLg&s')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\Difusor de Aromas Muji.jpg" alt="Difusor de aromas" class="producto-img">
+            <h4>Difusor de Aromas Muji</h4>
+            <p>Marca: Muji</p>
+            <p class="producto-precio">L350.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Difusor de Aromas Muji', 350, 'https://cdn11.bigcommerce.com/s-4b0oh2xvlj/images/stencil/original/image-manager/aroma-diffusers-01.jpg?t=1695983093&_gl=1*ns3qiy*_ga*MTQxNTAyNzA3MS4xNjg3NDQ0MDU5*_ga_WS2VZYPC6G*MTY5NTk4MjM0MC4yNzEuMS4xNjk1OTgzMzMxLjYwLjAuMA..')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\JADORE.jpg" alt="Perfume Dior" class="producto-img">
+            <h4>Perfume Dior J'adore</h4>
+            <p>Marca: Dior</p>
+            <p class="producto-precio">L900.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Perfume Dior J\'adore', 900, 'https://m.media-amazon.com/images/I/51glL7mrbuL._UF1000,1000_QL80_.jpg')">Agregar al carrito</button>
+          </div>
+          <div class="producto">
+            <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\LAVANDA.jpg" alt="Aceite de lavanda" class="producto-img">
+            <h4>Aceite de Lavanda Young Living</h4>
+            <p>Marca: Young Living</p>
+            <p class="producto-precio">L200.00</p>
+            <button class="producto-boton" onclick="agregarAlCarrito('Aceite de Lavanda Young Living', 200, 'https://images.ctfassets.net/x0wnv07j8mtt/5iIf1EoFiGZpUYhax1sGrh/43992456c8679ca9665532ff46cd1edb/Buy-Lavender-Essential-Oil.jpg')">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+      <p>Todos nuestros productos están disponibles para envío local y entrega en tienda física en San Francisco de la Paz. ¡Contáctanos para cotizaciones personalizadas!</p>
+    </section>
+    <section id="cuidados" class="section">
+      <h2>Consejos de Cuidado</h2>
+      <p id="fraseDinamicaCuidados" class="brillo"></p>
+      <h3>🌸 Cuidado Facial</h3>
+      <p>Para una piel radiante y saludable, sigue una rutina diaria con los siguientes pasos:</p>
+      <ul>
+        <li><strong>Limpieza:</strong> Lava tu rostro dos veces al día con un limpiador suave adecuado a tu tipo de piel.</li>
+        <li><strong>Tonificación:</strong> Usa un tónico facial para equilibrar el pH de tu piel y preparar el rostro para los siguientes pasos.</li>
+        <li><strong>Hidratación:</strong> Aplica una crema hidratante ligera por la mañana y una más nutritiva por la noche.</li>
+        <li><strong>Protección solar:</strong> Usa bloqueador FPS 30 o más todos los días, incluso cuando está nublado.</li>
+        <li><strong>Exfoliación:</strong> Exfolia tu rostro 1 o 2 veces por semana para eliminar células muertas y mejorar la absorción de productos.</li>
+        <li><strong>Mascarillas:</strong> Aplica mascarillas nutritivas, purificantes o hidratantes una vez por semana.</li>
+        <li><strong>Rutina nocturna:</strong> Nunca duermas con maquillaje. Usa desmaquillante y productos nutritivos antes de acostarte.</li>
+      </ul>
+      <h3>💆‍♀️ Cuidado del Cabello</h3>
+      <p>Mantén tu cabello sano y brillante con estos consejos:</p>
+      <ul>
+        <li>Evita el uso excesivo de herramientas de calor (planchas, secadoras, rizadores).</li>
+        <li>Aplica protector térmico antes de usar calor.</li>
+        <li>Lava el cabello con shampoo sin sal 2 o 3 veces por semana.</li>
+        <li>Utiliza acondicionadores y mascarillas hidratantes una vez a la semana.</li>
+        <li>Realiza masajes circulares en el cuero cabelludo para estimular el crecimiento.</li>
+        <li>Evita peinar el cabello húmedo con fuerza; utiliza peines de dientes anchos.</li>
+        <li>Usa aceites naturales (argán, coco, ricino) para reparar puntas abiertas y fortalecer.</li>
+      </ul>
+      <h3>🧴 Cuidado Corporal</h3>
+      <p>El cuerpo también necesita atención constante:</p>
+      <ul>
+        <li>Hidrata tu piel después de la ducha con cremas corporales o aceites naturales.</li>
+        <li>Exfolia tu cuerpo 1 vez por semana para eliminar impurezas.</li>
+        <li>Usa protector solar en zonas expuestas como brazos y cuello.</li>
+        <li>Báñate con productos suaves, sin alcohol ni fragancias fuertes.</li>
+        <li>Aplica desodorantes naturales para evitar irritaciones en la piel.</li>
+      </ul>
+      <h3>💅 Cuidado de Uñas</h3>
+      <p>Unas uñas limpias y fuertes también reflejan salud:</p>
+      <ul>
+        <li>Hidrata las cutículas diariamente con aceites naturales o cremas especiales.</li>
+        <li>Evita morder las uñas o cortar las cutículas en exceso.</li>
+        <li>Usa esmaltes fortalecedores si tus uñas son quebradizas.</li>
+        <li>Deja descansar las uñas del esmalte por algunos días entre aplicación y aplicación.</li>
+      </ul>
+      <h3>💄 Cuidado del Maquillaje</h3>
+      <p>Para mantener la piel protegida y el maquillaje impecable:</p>
+      <ul>
+        <li>Limpia tus brochas y esponjas al menos una vez por semana.</li>
+        <li>Guarda tu maquillaje en lugares frescos y evita exponerlo al sol.</li>
+        <li>No compartas productos personales para evitar infecciones.</li>
+        <li>Verifica la fecha de caducidad de los cosméticos y desecha los vencidos.</li>
+        <li>Aplica una prebase antes del maquillaje para mayor duración.</li>
+      </ul>
+      <h3>💧 Estilo de Vida Saludable</h3>
+      <p>La belleza también viene desde adentro:</p>
+      <ul>
+        <li>Bebe al menos 8 vasos de agua al día.</li>
+        <li>Mantén una dieta equilibrada rica en frutas, verduras y proteínas.</li>
+        <li>Duerme al menos 7 a 8 horas por noche.</li>
+        <li>Evita el estrés y busca momentos de relajación.</li>
+        <li>Haz ejercicio regularmente para estimular la circulación.</li>
+      </ul>
+      <p>Recuerda que cada persona tiene necesidades distintas. ¡Escucha a tu cuerpo, cuida tu piel y consiéntete cada día!</p>
+    </section>
+    <section id="compatibilidad" class="section">
+      <h2>Compatibilidad de Productos</h2>
+      <p>Conocer qué productos pueden combinarse entre sí es clave para una rutina efectiva y segura. Algunos ingredientes pueden potenciar sus beneficios juntos, mientras que otros pueden causar irritación o anular sus efectos si se usan en combinación. Aquí te brindamos una guía práctica:</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Producto</th>
+            <th>Compatible con</th>
+            <th>No Compatible con</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Serum Vitamina C</td>
+            <td>Hidratante, protector solar</td>
+            <td>Retinol, exfoliantes ácidos</td>
+          </tr>
+          <tr>
+            <td>Base Líquida Oil-Free</td>
+            <td>Polvo compacto, corrector</td>
+            <td>Maquillaje en crema muy pesado</td>
+          </tr>
+          <tr>
+            <td>Shampoo sin sal</td>
+            <td>Acondicionador hidratante</td>
+            <td>Productos con sulfatos fuertes</td>
+          </tr>
+          <tr>
+            <td>Labial Matte</td>
+            <td>Exfoliante labial, bálsamo</td>
+            <td>Labial gloss, cremosos sin fijar</td>
+          </tr>
+          <tr>
+            <td>Ácido Hialurónico</td>
+            <td>Niacinamida, cremas hidratantes</td>
+            <td>Ninguno, es compatible con casi todo</td>
+          </tr>
+          <tr>
+            <td>Retinol</td>
+            <td>Ceramidas, ácido hialurónico</td>
+            <td>Vitamina C, exfoliantes fuertes</td>
+          </tr>
+          <tr>
+            <td>Mascarilla de arcilla</td>
+            <td>Tónico hidratante, sueros calmantes</td>
+            <td>Peelings químicos el mismo día</td>
+          </tr>
+          <tr>
+            <td>Contorno en crema</td>
+            <td>Base líquida, fijador en spray</td>
+            <td>Polvos densos sin sellar bien</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>✅ Consejo: siempre realiza una prueba de sensibilidad al introducir nuevos productos en tu rutina. En SD Elegance te asesoramos para combinar tus productos de forma segura y efectiva.</p>
+    </section>
+    
+<section id="formularios" class="section">
+  <h2>Cuéntanos sobre tu producto de belleza favorito</h2>
+  <form id="formularioProducto">
+    <label for="tipoProducto">¿Qué categoría describe mejor tu producto?</label>
+    <select id="tipoProducto" name="tipoProducto" required>
+      <option value="">Selecciona una categoría</option>
+      <option value="Skincare">Cuidado de la piel (Skincare)</option>
+      <option value="Maquillaje">Maquillaje</option>
+      <option value="Cuidado corporal">Cuidado corporal</option>
+      <option value="Cuidado capilar">Cuidado del cabello</option>
+      <option value="Fragancias">Fragancias</option>
+    </select>
+    <label for="marcaProducto">¿Cuál es la marca del producto que usas?</label>
+    <input type="text" id="marcaProducto" name="marcaProducto" required placeholder="Ej: Golden Rose, L'Oréal, etc." />
+    <label for="usoProducto">¿Para qué usas este producto principalmente?</label>
+    <select id="usoProducto" name="usoProducto" required>
+      <option value="">Selecciona una opción</option>
+      <option value="Hidratación">Hidratación</option>
+      <option value="Limpieza facial">Limpieza facial</option>
+      <option value="Protección solar">Protección solar</option>
+      <option value="Maquillaje">Maquillaje</option>
+      <option value="Reparación capilar">Reparación del cabello</option>
+      <option value="Otros">Otros usos</option>
+    </select>
+    <label for="tipoPiel">¿Cómo describirías tu tipo de piel?</label>
+    <select id="tipoPiel" name="tipoPiel" required>
+      <option value="">Selecciona tu tipo de piel</option>
+      <option value="Normal">Normal</option>
+      <option value="Seca">Seca</option>
+      <option value="Grasa">Grasa</option>
+      <option value="Mixta">Mixta</option>
+      <option value="Sensible">Sensible</option>
+    </select>
+    <label for="efectosProducto">¿Qué beneficios o resultados has notado al usar este producto?</label>
+    <textarea id="efectosProducto" name="efectosProducto" rows="4" placeholder="Por ejemplo: mejora la hidratación, controla el brillo, etc."></textarea>
+    <label for="recomendacionProducto">¿Recomendarías este producto? ¿Por qué?</label>
+    <textarea id="recomendacionProducto" name="recomendacionProducto" rows="4" placeholder="Comparte tu opinión y experiencia"></textarea>
+    <button type="button" onclick="enviarFormularioWhatsApp()">Enviar Información</button>
+  </form>
+  <div id="mensajeExito" class="success-message">¡Formulario enviado con éxito!</div>
+</section>
+<section id="encuestas" class="section">
+  <div class="container">
+    <h1>Encuesta de Satisfacción: Productos de Maquillaje</h1>
+    <form id="encuestaMaquillaje">
+      <div class="form-group">
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" required>
+      </div>
+      <div class="form-group">
+        <label for="productosMaquillaje">¿Qué tipo de productos de maquillaje sueles usar con más frecuencia? (Selecciona todos los que apliquen)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="baseLiquida" name="productosMaquillaje" value="Base líquida"> Base líquida</label>
+          <label><input type="checkbox" id="corrector" name="productosMaquillaje" value="Corrector"> Corrector</label>
+          <label><input type="checkbox" id="polvo" name="productosMaquillaje" value="Polvo"> Polvo</label>
+          <label><input type="checkbox" id="rubor" name="productosMaquillaje" value="Rubor"> Rubor</label>
+          <label><input type="checkbox" id="delineador" name="productosMaquillaje" value="Delineador"> Delineador</label>
+          <label><input type="checkbox" id="mascaraPestanas" name="productosMaquillaje" value="Máscara de pestañas"> Máscara de pestañas</label>
+          <label><input type="checkbox" id="sombraOjos" name="productosMaquillaje" value="Sombra de ojos"> Sombra de ojos</label>
+          <label><input type="checkbox" id="labial" name="productosMaquillaje" value="Labial"> Labial</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="marcaFavorita">¿Tienes alguna marca favorita de productos de maquillaje?</label>
+        <select id="marcaFavorita" name="marcaFavorita" required>
+          <option value="">Selecciona una opción</option>
+          <option value="Sí">Sí</option>
+          <option value="No">No</option>
+        </select>
+        <input type="text" id="nombreMarca" name="nombreMarca" placeholder="Si es sí, por favor especifica la marca">
+      </div>
+      <div class="form-group">
+        <label for="frecuenciaCompra">¿Con qué frecuencia compras productos de maquillaje?</label>
+        <select id="frecuenciaCompra" name="frecuenciaCompra" required>
+          <option value="">Selecciona una opción</option>
+          <option value="Semanalmente">Semanalmente</option>
+          <option value="Mensualmente">Mensualmente</option>
+          <option value="Cada 2-3 meses">Cada 2-3 meses</option>
+          <option value="Cada 6 meses">Cada 6 meses</option>
+          <option value="Anualmente">Anualmente</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="factoresCompra">¿Qué factores influyen más en tu decisión de compra de productos de maquillaje? (Selecciona todos los que apliquen)</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" id="precio" name="factoresCompra" value="Precio"> Precio</label>
+          <label><input type="checkbox" id="calidad" name="factoresCompra" value="Calidad"> Calidad</label>
+          <label><input type="checkbox" id="recomendaciones" name="factoresCompra" value="Recomendaciones de amigos/familia"> Recomendaciones de amigos/familia</label>
+          <label><input type="checkbox" id="reseñas" name="factoresCompra" value="Reseñas en línea"> Reseñas en línea</label>
+          <label><input type="checkbox" id="ingredientes" name="factoresCompra" value="Ingredientes naturales/orgánicos"> Ingredientes naturales/orgánicos</label>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="satisfaccion">¿Qué tan satisfecho/a estás con los productos de maquillaje que has comprado recientemente?</label>
+        <select id="satisfaccion" name="satisfaccion" required>
+          <option value="">Selecciona una opción</option>
+          <option value="Muy satisfecho/a">Muy satisfecho/a</option>
+          <option value="Satisfecho/a">Satisfecho/a</option>
+          <option value="Neutral">Neutral</option>
+          <option value="Insatisfecho/a">Insatisfecho/a</option>
+          <option value="Muy insatisfecho/a">Muy insatisfecho/a</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="comentarios">¿Tienes algún comentario adicional?</label>
+        <textarea id="comentarios" name="comentarios" rows="4"></textarea>
+      </div>
+      <button type="button" onclick="enviarEncuestaWhatsApp()">Enviar Encuesta</button>
+    </form>
+  </div>
+</section>
+<script>
+  function enviarFormularioWhatsApp() {
+    // Obtener los valores del formulario
+    const tipoProducto = document.getElementById("tipoProducto").value;
+    const marcaProducto = document.getElementById("marcaProducto").value;
+    const usoProducto = document.getElementById("usoProducto").value;
+    const tipoPiel = document.getElementById("tipoPiel").value;
+    const efectosProducto = document.getElementById("efectosProducto").value;
+    const recomendacionProducto = document.getElementById("recomendacionProducto").value;
+    // Crear el mensaje para WhatsApp
+    const mensaje = `
+      *Formulario de Producto de Belleza*
+      - Categoría: ${tipoProducto}
+      - Marca: ${marcaProducto}
+      - Uso principal: ${usoProducto}
+      - Tipo de piel: ${tipoPiel}
+      - Beneficios: ${efectosProducto}
+      - Recomendación: ${recomendacionProducto}
+    `;
+    // Codificar el mensaje para URL
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    // Abrir WhatsApp con el mensaje
+    window.open(`https://wa.me/50489432128?text=${mensajeCodificado}`, "_blank");
+    // Mostrar mensaje de éxito
+    document.getElementById("mensajeExito").style.display = "block";
+  }
+  function enviarEncuestaWhatsApp() {
+    // Obtener los valores del formulario de encuesta
+    const nombre = document.getElementById("nombre").value;
+    const email = document.getElementById("email").value;
+    const productosMaquillaje = [];
+    const checkboxes = document.querySelectorAll('input[name="productosMaquillaje"]:checked');
+    checkboxes.forEach((checkbox) => {
+      productosMaquillaje.push(checkbox.value);
+    });
+    const marcaFavorita = document.getElementById("marcaFavorita").value;
+    const nombreMarca = document.getElementById("nombreMarca").value;
+    const frecuenciaCompra = document.getElementById("frecuenciaCompra").value;
+    const factoresCompra = [];
+    const checkboxesFactores = document.querySelectorAll('input[name="factoresCompra"]:checked');
+    checkboxesFactores.forEach((checkbox) => {
+      factoresCompra.push(checkbox.value);
+    });
+    const satisfaccion = document.getElementById("satisfaccion").value;
+    const comentarios = document.getElementById("comentarios").value;
+    // Crear el mensaje para WhatsApp
+    const mensaje = `
+      *Encuesta de Satisfacción: Productos de Maquillaje*
+      - Nombre: ${nombre}
+      - Email: ${email}
+      - Productos usados: ${productosMaquillaje.join(", ")}
+      - Marca favorita: ${marcaFavorita} ${marcaFavorita === "Sí" ? `(${nombreMarca})` : ""}
+      - Frecuencia de compra: ${frecuenciaCompra}
+      - Factores de compra: ${factoresCompra.join(", ")}
+      - Satisfacción: ${satisfaccion}
+      - Comentarios: ${comentarios}
+    `;
+    // Codificar el mensaje para URL
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    // Abrir WhatsApp con el mensaje
+    window.open(`https://wa.me/50489432128?text=${mensajeCodificado}`, "_blank");
+  }
+</script>
+    <section id="estadisticas" class="section">
+      <h2>Estadísticas de Productos</h2>
+      <div id="grafico-estadisticas"></div>
+      <div class="grafico">
+        <canvas id="myChart"></canvas>
+      </div>
+    </section>
+    <section id="galeria" class="section">
+      <h2>Galería de Imágenes</h2>
+      <!-- Sección 1: Maquillaje -->
+      <div class="seccion-galeria">
+        <h3>💄 Maquillaje</h3>
+        <button class="boton-regresar" onclick="toggleSection('productos')">Regresar a Productos</button>
+        <div class="galeria">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\imagen.png" alt="Base Líquida">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\paleta.jpg" alt="Paleta de Sombras">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\mates.jpg" alt="Labial Matte">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\mascaras.jpg" alt="Máscara de Pestañas">
+        </div>
+      </div>
+      <!-- Sección 2: Skincare -->
+      <div class="seccion-galeria">
+        <h3>✨ Skincare</h3>
+        <button class="boton-regresar" onclick="toggleSection('productos')">Regresar a Productos</button>
+        <div class="galeria">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\limpiador.jpg" alt="Limpiador Facial">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\hidratantes.jpg" alt="Crema Hidratante">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\Serum v C.jpg" alt="Serum Vitamina C">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\protectores.jpg" alt="Protector Solar">
+        </div>
+      </div>
+      <!-- Sección 3: Cuidado Capilar -->
+      <div class="seccion-galeria">
+        <h3>🧴 Cuidado Capilar</h3>
+        <button class="boton-regresar" onclick="toggleSection('productos')">Regresar a Productos</button>
+        <div class="galeria">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\shampoo.jpg" alt="Shampoo Sin Sal">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\argan.jpg" alt="Aceite de Argán">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\Keratin.jpg" alt="Keratina">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\tintes.jpg" alt="Tinte para Cabello">
+        </div>
+      </div>
+      <!-- Sección 4: Uñas -->
+      <div class="seccion-galeria">
+        <h3>💅 Uñas</h3>
+        <button class="boton-regresar" onclick="toggleSection('productos')">Regresar a Productos</button>
+        <div class="galeria">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\esmaltes.jpg" alt="Esmalte de Uñas">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\kit.jpg" alt="Kit de Manicura">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\uñas.jpg" alt="Uñas Postizas">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\gel.jpg" alt="Gel para Uñas">
+        </div>
+      </div>
+      <!-- Sección 5: Accesorios -->
+      <div class="seccion-galeria">
+        <h3>🛍️ Accesorios</h3>
+        <button class="boton-regresar" onclick="toggleSection('productos')">Regresar a Productos</button>
+        <div class="galeria">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\brochas.jpg" alt="Brochas Profesionales">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\led.jpg" alt="Espejo LED">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\organizador.jpg" alt="Organizador Acrílico">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\secador.jpg"alt="Secador de Pelo">
+        </div>
+      </div>
+      <!-- Sección 6: Mis Imágenes -->
+      <div class="seccion-galeria">
+        <h3>📸 productos</h3>
+        <button class="boton-regresar" onclick="toggleSection('productos')">Regresar a Productos</button>
+        <div class="galeria">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\masajeador.jpg" alt="Masajeador">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\perfumee.jpg" alt="Perfume">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\exfoliantes.jpg" alt="Exfoliante">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\secador.jpg" alt="Rizador">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\acgua.jpg" alt="Agua de Colonia">
+          <img src="C:\Users\sadyd\OneDrive\Escritorio\img sady pagi\gloses.png" alt="Gloses Labiales">
+        </div>
+      </div>
+    </section>
+    <section id="videos" class="section">
+      <h2>Videos Recomendados</h2>
+      <div class="videos">
+        <div class="video-container">
+          <iframe src="C:\Users\sadyd\OneDrive\Escritorio\video de skincare.mp4" allowfullscreen></iframe>
+        </div>
+        <div class="video-container">
+          <iframe src="C:\Users\sadyd\OneDrive\Escritorio\tutorial de maquillaje .mp4" allowfullscreen></iframe>
+        </div>
+      </div>
+    </section>
+        </section>
+    <section id="valoracion" class="section">
+  <h2>Valora Nuestro Servicio</h2>
+  <div class="valoracion">
+    <div class="estrellas">
+      <i class="fas fa-star" onclick="valorar(1); enviarValoracionWhatsApp(1)"></i>
+      <i class="fas fa-star" onclick="valorar(2); enviarValoracionWhatsApp(2)"></i>
+      <i class="fas fa-star" onclick="valorar(3); enviarValoracionWhatsApp(3)"></i>
+      <i class="fas fa-star" onclick="valorar(4); enviarValoracionWhatsApp(4)"></i>
+      <i class="fas fa-star" onclick="valorar(5); enviarValoracionWhatsApp(5)"></i>
+    </div>
+    <p id="valoracion-texto"></p>
+  </div>
+</section>
+<script>
+  function enviarValoracionWhatsApp(estrellas) {
+    const mensaje = `*Valoración de Servicio*\n\nUn usuario ha valorado nuestro servicio con ${estrellas} estrella(s).`;
+    const mensajeCodificado = encodeURIComponent(mensaje);
+    window.open(`https://wa.me/50489432128?text=${mensajeCodificado}`, "_blank");
+  }
+</script>
+    <section id="contacto" class="section">
+      <h2>Contacto y Ubicación</h2>
+      <p><strong>Dirección:</strong> San Francisco de la Paz, Olancho, Honduras</p> 
+      <p><strong>Horario de Atencion:</strong> Lunes a Viernes de 8:30am a 5:30pm, Sabado de 9:00am a 5:00pm</p>
+      <p><strong>Teléfono:</strong> 8943-2128</p>
+      <p><strong>Email:</strong> sadyduarte05@gmail.com</p>
+      <p><strong>Contactanos:</strong></p> 
+      <ul>
+        <li><a href="https://instagram.com/duartesady_02" target="_blank" rel="noopener noreferrer">Instagram: @duartesady_02</a></li>
+        <li><a href="https://wa.me/50489432128" target="_blank" rel="noopener noreferrer">WhatsApp: 8943-2128</a></li>
+        <li><a href="https://www.tiktok.com/@sadyduarte03" target="_blank" rel="noopener noreferrer">TikTok: @sadyduarte03</a></li>
+        <li><a href="https://www.facebook.com/SadyDuarte" target="_blank" rel="noopener noreferrer">Facebook: Sady Duarte</a></li>
+        <p><strong>otras tiendas:</strong></p>
+        <li><a href="https://vm.tiktok.com/ZMSYFoYyx/" target="_blank" rel="noopener noreferrer">Enlace: tik Tok</a></li>
+        <li><a href="https://www.sephora.com/ca/en/brand/laneige?gad_source=1&gad_campaignid=21107194687&gbraid=0AAAAAoOTb3Pa-lTT1X3beqXcfiIJoPTNH&gclid=Cj0KCQjw_8rBBhCFARIsAJrc9yDGG3PTod-E8GM4WJcGEQUv_KWb1yi51YiVSCNJNrWjvHDhjq7c4i0aAp8eEALw_wcB" target="_blank" rel="noopener noreferrer">Sephora: Laneige</a></li>
+        <li><a href="https://www.dior.com/es_sam/beauty/home-makeup/home-makeup.html"target="_blank" rel="noopener noreferrer">Dior Maquillaje: Laneige</a></li>
+        <li><a href="https://www.google.com/search?sca_esv=b9039e3016f1e9d6&sxsrf=AE3TifN8bfdSnvj6Zu8896CNBr1dVpoDvw:1749772896769&q=videos+de+skincare+marca+ordinary&udm=7&fbs=AIIjpHxU7SXXniUZfeShr2fp4giZ1Y6MJ25_tmWITc7uy4KIeoJTKjrFjVxydQWqI2NcOhYPURIv2wPgv_w_sE_0Sc6QK53R10BL2L-R2tVyd5_c-Yeyxm8C4HMHPU1iF1qjyQi6wVK6MUg-jVeL7OfUtH3Yyu6wrTNhIVSVsks4rw7EYe8LsEBAiLshWTMrI2LZ2ZVxEPJO&sa=X&ved=2ahUKEwiVjsz_i-2NAxWcVTABHVT1K0sQtKgLegQIEhAB&biw=1536&bih=730&dpr=1.25#fpstate=ive&vld=cid:74da86f2,vid:GMRa5nIfUVU,st:0"target="_blank" rel="noopener noreferrer">video: Laneige</a></li>
+      </ul>
+      <button class="boton-mapa" onclick="abrirMapa()">Ver Mapa</button>
+      <div id="modalMapa" class="modal-mapa">
+        <div class="modal-contenido">
+          <span class="cerrar" onclick="cerrarMapa()">&times;</span>
+          <h3>Ubicación de SD Elegance</h3>
+      <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3906.7553832056677!2d-86.2825756846662!3d14.745253489856716!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8f6973a7efb8f65b%3A0xc5adf7b4a13c8b54!2sSan%20Francisco%20de%20la%20Paz%2C%20Olancho%2C%20Honduras!5e0!3m2!1ses-419!2sus!4v1687965543210!5m2!1ses-419!2sus"
+            width="100%"
+            height="350"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>&copy; 2025 - SD Elegance - Belleza y Cuidado Personal</p>
+    <p>Diseñado por Sady Duarte alumna de 12avo grado Bachillerato Tecnico Profesional en Informatica</p>
+  </footer>
+  <!-- Botón del carrito -->
+  <button class="boton-carrito" onclick="toggleCarrito()">
+    <i class="fas fa-shopping-cart"></i>
+    <span class="contador-carrito" id="contadorCarrito">0</span>
+  </button>
+  <!-- Carrito de compras -->
+  <div class="carrito" id="carrito">
+    <h3>Carrito de Compras</h3>
+    <ul id="listaCarrito"></ul>
+    <button onclick="enviarCarrito()">Enviar Pedido</button>
+  </div>
+  <!-- Modal de cookies (antes de cerrar el body) -->
+<div id="cookieModal" class="cookie-modal">
+  <p>Este sitio web utiliza cookies para garantizar que obtengas la mejor experiencia. <a href="#">Política de Cookies</a></p>
+  <button onclick="aceptarCookies()">Aceptar</button>
+</div>
+<div id="cookieModal" class="cookie-modal">
+    <p>Este sitio web utiliza cookies para garantizar que obtengas la mejor experiencia. <a href="#">Política de Cookies</a></p>
+    <button onclick="aceptarCookies()">Aceptar</button>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+
+    // Inicializar gráfico de estadísticas
+    document.addEventListener('DOMContentLoaded', () => {
+      const ctx = document.getElementById('myChart').getContext('2d');
+      const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: ['Limpiadores faciales', 'Cremas hidratantes', 'Serums', 'Bases líquidas', 'Labiales', 'Shampoo sin sal'],
+          datasets: [{
+            label: 'Ventas 2025',
+            data: [120, 95, 88, 150, 200, 75],
+            backgroundColor: [
+              'rgba(255, 99, 132, 0.7)',
+              'rgba(54, 162, 235, 0.7)',
+              'rgba(255, 206, 86, 0.7)',
+              'rgba(75, 192, 192, 0.7)',
+              'rgba(153, 102, 255, 0.7)',
+              'rgba(255, 159, 64, 0.7)'
+            ],
+            borderColor: [
+              'rgba(255, 99, 132, 1)',
+              'rgba(54, 162, 235, 1)',
+              'rgba(255, 206, 86, 1)',
+              'rgba(75, 192, 192, 1)',
+              'rgba(153, 102, 255, 1)',
+              'rgba(255, 159, 64, 1)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+  </script>
+</body>
+</html>
